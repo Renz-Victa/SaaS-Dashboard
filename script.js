@@ -154,3 +154,41 @@ let feedItems = [
   { icon: '📩', text: 'Support ticket form <b>Tom B.</b>', time: '18m ago', clr: '#38bdf8' },
 ];
 
+const newItems = [
+  { icon: '🚀', text: 'Beta feature enabled by <b>Dev Team</b>', clr: '#6c63ff' },
+  { icon: '💬', text: 'New 5-star review from <b>Anna. T.</b>', clr: '#43e97b' },
+  { icon: '🔒', text: 'Password changed for <b>Raj P.</b>', clr: '#38bdf8' },
+  { icon: '💡', text: '<b>StartupsXYZ</b> signed up for trial', clr: '#f7971e' },
+];
+
+function renderFeed() {
+  const feed = document.getElementById('activityFeed');
+  feed.innerHTML = '';
+  feedItems.forEach((a, i) => {
+    const el = document.createElement('div');
+    el.style.cssText = 'display:flex;align-items:flex-start;gap:10px;';
+    if (i === 0) el.classList.add('slide-in');
+    el.innerHTML = `
+    <div style="width:30px;height:30px;border-radius:8px;background:${a.clr}20;display:flex;align-items:center;justify-content:center;font-size;flex-shrink:0;">${a.icon}</div>
+    <div style="flex:1;min-width:0;">
+    <div style="font-size:13px;line-height:1.4;">${a.text}</div>
+    <div style="font-size:11px;color:var(--muted);margin-top:2px;">${a.time}</div>
+    </div>`;
+    feed.appendChild(el);
+  });
+}
+renderFeed();
+
+let nIdx = 0;
+setInterval(() => {
+  const next = {
+    ...newItems[nIdx % newItems.length], time: 'just now'
+  };
+  feedItems.unshift(next);
+  feedItems = feedItems.slice(0, 5);
+  feedItems.forEach((a, i) => {
+    if (i > 0) a.time = (i * 3) + 'm ago';
+  });
+  nIdx++;
+  renderFeed();
+}, 5000);
