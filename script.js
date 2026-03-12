@@ -153,3 +153,4 @@ let feedItems = [
   { icon: '🎉', text: '<b>Acme Corp</b> reached 100 seats', time: '1m ago', clr: '#f7971e' },
   { icon: '📩', text: 'Support ticket form <b>Tom B.</b>', time: '18m ago', clr: '#38bdf8' },
 ];
+
