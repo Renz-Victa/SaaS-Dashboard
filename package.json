@@ -1,0 +1,29 @@
+{
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.1",
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^4.2.1"
+  },
+  "name": "saas-dashboard",
+  "version": "1.0.0",
+  "description": "A responsive, modern SaaS analytics dashboard built with vanilla JavaScript, HTML, CSS and Tailwind CSS. Designed for clarity and performance without the overhead of a JavaScript framework.",
+  "main": "script.js",
+  "scripts": {
+    "build": "tailwindcss -i ./style.css -o ./dist/style.css",
+    "dev": "tailwindcss -i ./style.css -o ./dist/style.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Renz-Victa/SaaS-Dashboard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Renz-Victa/SaaS-Dashboard/issues"
+  },
+  "homepage": "https://github.com/Renz-Victa/SaaS-Dashboard#readme"
+}
