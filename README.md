@@ -1,4 +1,4 @@
-# 📊 SaaS-Dashboard
+## 📊 SaaS-Dashboard
 
 A responsive, modern SaaS analytics dashboard built with vanilla JavaScript, HTML, CSS and Tailwind CSS. Designed for clarity and performance without the overhead of a JavaScript framework.
 
