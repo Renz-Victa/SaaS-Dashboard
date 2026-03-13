@@ -10,8 +10,8 @@
   "description": "A responsive, modern SaaS analytics dashboard built with vanilla JavaScript, HTML, CSS and Tailwind CSS. Designed for clarity and performance without the overhead of a JavaScript framework.",
   "main": "script.js",
   "scripts": {
-    "build": "tailwindcss -i ./style.css -o ./dist/style.css",
-    "dev": "tailwindcss -i ./style.css -o ./dist/style.css --watch",
+    "build": "tailwindcss -i ./src/style.css -o ./dist/style.css",
+    "dev": "tailwindcss -i ./src/style.css -o ./dist/style.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
