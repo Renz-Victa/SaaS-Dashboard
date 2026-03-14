@@ -46,12 +46,13 @@ function animateCounter(element, targetValue, prefix = '', duration = 1400) {
   requestAnimationFrame(tick);
 }
 
-// Delay so the card fade-in plays before the count starts
+// Delay so the card fade-in plays before counting starts
+// Values are in South African Rand (ZAR)
 setTimeout(() => {
-  animateCounter(document.getElementById('statRev'), 84291, '$');
+  animateCounter(document.getElementById('statRev'), 1517238, 'R');
   animateCounter(document.getElementById('statUsers'), 12847);
   animateCounter(document.getElementById('statConv'), 3294);
-  animateCounter(document.getElementById('statAov'), 2194, '$');
+  animateCounter(document.getElementById('statAov'), 39492, 'R');
 }, 300);
 
 /* ----------------------------------------------------------
@@ -68,17 +69,17 @@ const pinkGradient = chartCanvas.createLinearGradient(0, 0, 0, 240);
 pinkGradient.addColorStop(0, 'rgba(255, 101, 132, 0.2)');
 pinkGradient.addColorStop(1, 'rgba(255, 101, 132, 0)');
 
-// Data for each time range toggle
+// Data for each time range toggle (values in ZAR)
 const chartData = {
   '6m': {
-    labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'],
-    revenue: [52000, 61000, 58000, 74000, 71000, 84000],
-    expenses: [31000, 35000, 33000, 40000, 38000, 42000],
+    labels: ["Sep '25", "Oct '25", "Nov '25", "Dec '25", "Jan '26", "Feb '26"],
+    revenue: [936000, 1098000, 1044000, 1332000, 1278000, 1512000],
+    expenses: [558000, 630000, 594000, 720000, 684000, 756000],
   },
   '1y': {
-    labels: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'],
-    revenue: [40000, 44000, 48000, 51000, 55000, 58000, 52000, 61000, 58000, 74000, 71000, 84000],
-    expenses: [25000, 27000, 28000, 30000, 32000, 34000, 31000, 35000, 33000, 40000, 38000, 42000],
+    labels: ["Mar '25", "Apr '25", "May '25", "Jun '25", "Jul '25", "Aug '25", "Sep '25", "Oct '25", "Nov '25", "Dec '25", "Jan '26", "Feb '26"],
+    revenue: [720000, 792000, 864000, 918000, 990000, 1044000, 936000, 1098000, 1044000, 1332000, 1278000, 1512000],
+    expenses: [450000, 486000, 504000, 540000, 576000, 612000, 558000, 630000, 594000, 720000, 684000, 756000],
   },
 };
 
@@ -136,7 +137,7 @@ const revenueChart = new Chart(chartCanvas, {
         titleFont: { family: 'Syne', weight: '700' },
         bodyFont: { family: 'DM Sans' },
         callbacks: {
-          label: (context) => ' $' + context.raw.toLocaleString(),
+          label: (context) => ' R' + context.raw.toLocaleString(),
         },
       },
     },
@@ -150,7 +151,7 @@ const revenueChart = new Chart(chartCanvas, {
         ticks: {
           color: '#6b6b80',
           font: { family: 'DM Sans', size: 12 },
-          callback: (value) => '$' + (value / 1000) + 'k',
+          callback: (value) => 'R' + (value / 1000000).toFixed(1) + 'M',
         },
       },
     },
@@ -158,11 +159,9 @@ const revenueChart = new Chart(chartCanvas, {
 });
 
 function setChartRange(range) {
-  // Toggle active class on the buttons
   document.getElementById('btn6m').classList.toggle('active', range === '6m');
   document.getElementById('btn1y').classList.toggle('active', range === '1y');
 
-  // Update chart data
   const selected = chartData[range];
   revenueChart.data.labels = selected.labels;
   revenueChart.data.datasets[0].data = selected.revenue;
@@ -174,11 +173,11 @@ function setChartRange(range) {
    Orders Table
 ---------------------------------------------------------- */
 const orders = [
-  { name: 'Sarah Johnson', initials: 'SJ', product: 'Pro Plan', amount: '$299', status: 'active', date: 'Jan 10', color: '#6c63ff' },
-  { name: 'Marcus Lee', initials: 'ML', product: 'Enterprise', amount: '$1,499', status: 'active', date: 'Jan 10', color: '#ff6584' },
-  { name: 'Priya Shah', initials: 'PS', product: 'Starter', amount: '$49', status: 'pending', date: 'Jan 9', color: '#43e97b' },
-  { name: 'Tom Walker', initials: 'TW', product: 'Pro Plan', amount: '$299', status: 'cancelled', date: 'Jan 9', color: '#f7971e' },
-  { name: 'Emily Chen', initials: 'EC', product: 'Enterprise', amount: '$1,499', status: 'active', date: 'Jan 8', color: '#38bdf8' },
+  { name: 'Sarah Johnson', initials: 'SJ', product: 'Pro Plan', amount: 'R5,382', status: 'active', date: 'Jan 10', color: '#6c63ff' },
+  { name: 'Marcus Lee', initials: 'ML', product: 'Enterprise', amount: 'R26,982', status: 'active', date: 'Jan 10', color: '#ff6584' },
+  { name: 'Priya Shah', initials: 'PS', product: 'Starter', amount: 'R882', status: 'pending', date: 'Jan 9', color: '#43e97b' },
+  { name: 'Tom Walker', initials: 'TW', product: 'Pro Plan', amount: 'R5,382', status: 'cancelled', date: 'Jan 9', color: '#f7971e' },
+  { name: 'Emily Chen', initials: 'EC', product: 'Enterprise', amount: 'R26,982', status: 'active', date: 'Jan 8', color: '#38bdf8' },
 ];
 
 const tableBody = document.getElementById('ordersBody');
@@ -212,7 +211,7 @@ orders.forEach(order => {
    Goals / Progress Bars
 ---------------------------------------------------------- */
 const goals = [
-  { label: 'Revenue Target', percent: 84, display: '$84K / $100K', color: '#6c63ff' },
+  { label: 'Revenue Target', percent: 84, display: 'R1.5M / R1.8M', color: '#6c63ff' },
   { label: 'New Signups', percent: 67, display: '1,340 / 2,000', color: '#43e97b' },
   { label: 'Churn Rate', percent: 78, display: '2.2% (goal <3%)', color: '#f7971e' },
   { label: 'NPS Score', percent: 90, display: '72 / 80', color: '#ff6584' },
@@ -234,7 +233,7 @@ goals.forEach(goal => {
       `;
 });
 
-// Small delay so CSS renders the bar at 0% before animating
+// Small delay so CSS renders bars at 0% before animating to target
 setTimeout(() => {
   document.querySelectorAll('.progress-fill').forEach(bar => {
     bar.style.width = bar.dataset.target;
@@ -286,13 +285,11 @@ function renderFeed() {
 }
 
 function addFeedItem() {
-  // Grab the next incoming item (cycles indefinitely)
   const next = { ...incomingItems[incomingIndex % incomingItems.length], time: 'just now' };
   incomingIndex++;
 
-  // Prepend new item and age the existing ones
   feedItems.unshift(next);
-  feedItems = feedItems.slice(0, 5); // keep max 5
+  feedItems = feedItems.slice(0, 5);
   feedItems.forEach((item, i) => {
     if (i > 0) item.time = (i * 3) + 'm ago';
   });
